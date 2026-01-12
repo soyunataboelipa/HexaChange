@@ -1,8 +1,0 @@
-
-@keyframes paintStep {
-  from { transform: scale(.85); opacity:.6; }
-  to { transform: scale(1); opacity:1; }
-}
-.circle-painted {
-  animation: paintStep .18s ease-out;
-}

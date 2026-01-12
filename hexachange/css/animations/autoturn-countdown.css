@@ -1,8 +1,0 @@
-
-@keyframes pulseText {
-  0%,100% { opacity: .6; }
-  50% { opacity: 1; }
-}
-.autoturn-countdown {
-  animation: pulseText .9s ease-in-out infinite;
-}
