@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HexaChange • ColorRoll Lite</title>
+
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="css/selector.css" />
+</head>
+
+<body>
+  <!-- Fondo estilo index -->
+  <div class="bg">
+    <div class="hexfield"></div>
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
+    <div class="grain"></div>
+  </div>
+
+  <header class="top">
+    <a class="back chip" href="./index.html" aria-label="Volver al inicio">
+      <span class="chip-dot"></span>
+      <span>Volver</span>
+    </a>
+
+    <div class="hgroup">
+      <h1>ColorRoll Lite</h1>
+      <p>Elige el tamaño del tablero (modo corto).</p>
+    </div>
+
+    <div class="top-right">
+      <span class="mini-pill">🎲 Dado: 1–6</span>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="panel">
+      <div class="panel-head">
+        <div class="panel-title">¿Cuántos círculos?</div>
+        <div class="panel-sub">Se guardará tu elección y empezarás la partida con ese tamaño.</div>
+      </div>
+
+      <div class="list" data-mode="colorroll">
+        <button class="list-item" data-circles="10" type="button">
+          <span class="icon">🎲</span>
+          <span class="text">
+            <span class="label">10 círculos</span>
+            <span class="desc">Ritmo bajo • ideal para probar</span>
+          </span>
+          <span class="chev">↗</span>
+        </button>
+
+        <button class="list-item" data-circles="20" type="button">
+          <span class="icon i2">⚡</span>
+          <span class="text">
+            <span class="label">20 círculos</span>
+            <span class="desc">Ritmo medio • más largo</span>
+          </span>
+          <span class="chev">↗</span>
+        </button>
+
+        <button class="list-item" data-circles="50" type="button">
+          <span class="icon i3">💠</span>
+          <span class="text">
+            <span class="label">50 círculos</span>
+            <span class="desc">Ritmo alto • Largo y tenso</span>
+          </span>
+          <span class="chev">↗</span>
+        </button>
+      </div>
+
+      <div class="hint">
+        <div class="hint-bullet">ℹ️</div>
+        <div class="hint-text">
+          Consejo: si quieres que se sienta “más estratégico”, usa 20 o 50.
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>HexaChange • ColorRoll Lite</span>
+      <span class="dot">•</span>
+      <span>Selector de tablero</span>
+    </footer>
+  </main>
+
+  <script src="./js/selector.js"></script>
+</body>
+</html>

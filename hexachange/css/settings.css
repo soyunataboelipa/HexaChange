@@ -1,0 +1,104 @@
+body.modal-open { overflow: hidden; }
+
+.settings-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
+  z-index: 1000;
+}
+.settings-overlay.show{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.settings{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) scale(.92);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .22s ease, opacity .22s ease;
+  z-index: 1001;
+  width: min(560px, 92vw);
+}
+.settings.show{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%,-50%) scale(1);
+}
+.settings.hide{
+  transform: translate(-50%,-50%) scale(.96);
+}
+
+.settings-panel{
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(90,35,160,.70), rgba(20,25,40,.78));
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 30px 80px rgba(0,0,0,.45);
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+}
+
+.settings-head{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.settings-close{
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.20);
+  color: #fff;
+  cursor: pointer;
+}
+
+.settings-body{ padding: 14px 16px; display:flex; flex-direction:column; gap: 12px; }
+.set-row{
+  display:flex; align-items:center; justify-content: space-between;
+  gap: 12px;
+}
+.lab{ opacity: .9; font-weight: 600; }
+.select, .number, .pass{
+  width: 220px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.18);
+  color: #fff;
+  outline: none;
+}
+.toggle{
+  display:flex; justify-content: space-between; align-items:center;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.18);
+}
+.settings-actions{
+  display:flex; justify-content:flex-end; gap: 10px;
+  padding-top: 4px;
+}
+.btn{
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+  color: #fff;
+  cursor: pointer;
+}
+.btn.primary{
+  background: linear-gradient(90deg, rgba(140,60,255,.75), rgba(90,35,160,.80));
+  border-color: rgba(255,255,255,.14);
+}
+.settings-note{
+  margin-top: 6px;
+  font-size: 12px;
+  opacity: .8;
+}
