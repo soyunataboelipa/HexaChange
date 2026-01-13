@@ -1,0 +1,8 @@
+
+@keyframes glowTurn {
+  0%,100% { box-shadow: 0 0 12px rgba(34,211,238,.4); }
+  50% { box-shadow: 0 0 28px rgba(34,211,238,.9); }
+}
+.turn-active {
+  animation: glowTurn 1.6s ease-in-out infinite;
+}
