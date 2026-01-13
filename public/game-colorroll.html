@@ -1,0 +1,203 @@
+﻿<!-- game.html -->
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HexaChange - Juego</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="./css/game.css" />
+</head>
+
+<body>
+  <!-- Background -->
+  <div class="bg">
+    <div class="hexfield"></div>
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
+    <div class="grain"></div>
+  </div>
+
+  <!-- Board area -->
+  <main class="stage">
+    <section class="board-shell">
+      <div class="board" id="board">
+        <div class="board-poly" id="boardPoly" aria-hidden="true"></div>
+        <canvas class="heart-canvas" id="heartCanvas" aria-hidden="true"></canvas>
+        <!-- Center heart (2D placeholder for now) -->
+        <div class="heart" id="heart" aria-label="Corazon objetivo">
+          <div class="heart-core" aria-hidden="true">&#10084;</div>
+        </div>
+
+        <!-- Seats + paths injected by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom UI (fixed) -->
+  <footer class="hud" id="hud">
+    <div class="hud-left">
+      <div class="profile" id="hudProfile">
+        <div class="pfp" id="hudPfp">&#128100;</div>
+        <div class="pmeta">
+          <div class="pname" id="hudName">Ana</div>
+          <div class="pdesc" id="hudDesc">Conectado</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hud-mid">
+      <div class="status-card" id="statusCard">
+        <div class="status-title" id="statusTitle" aria-live="polite">Esperando...</div>
+        <div class="status-sub" id="statusSub">Preparando partida</div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-chip">
+          <img class="ico" src="./multimedia/icons/clock.svg" alt="" />
+          <span id="timerText">00:00</span>
+        </div>
+
+        <div class="stat-chip">
+          <span class="dot"></span>
+          <span id="progressText">Circulos pintados: 0/10</span>
+        </div>
+      </div>
+
+      <div class="hud-actions">
+        <button class="btn-roll" id="rollBtn" type="button" aria-label="Tirar dado">
+          TIRAR
+        </button>
+      </div>
+    </div>
+
+    <div class="hud-right">
+      <div class="stat-chip spectators-chip" aria-label="Espectadores">
+        <img class="ico" src="./multimedia/icons/eye.svg" alt="" />
+        <span id="spectatorsText">0/5</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dialog: Auto-Turno (countdown + enabled) -->
+  <div class="dialog-wrap" id="autoDialogWrap" hidden>
+    <div class="dialog overlay-enter" id="autoDialog">
+      <div class="dialog-title" id="autoDialogTitle">Auto-Turno en 5</div>
+      <div class="dialog-sub" id="autoDialogSub">Si no tiras, lo hara por ti</div>
+      <button class="dialog-check" id="autoDialogCheck" type="button" aria-label="Desactivar Auto-Turno">
+        <img class="ico" src="./multimedia/icons/check.svg" alt="" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Overlay 1: Lobby/Waiting -->
+  <div class="overlay-wrap" id="overlayLobby">
+    <div class="overlay overlay-enter overlay-panel" role="dialog" aria-modal="true" aria-labelledby="lobbyTitle" aria-describedby="lobbySub">
+      <div class="overlay-top">
+        <div class="overlay-title-row">
+          <div class="overlay-title" id="lobbyTitle">Sala / Espera</div>
+          <div class="overlay-sub" id="lobbySub">Esperando jugadores...</div>
+        </div>
+        <div class="overlay-toolbar">
+          <label class="toggle">
+            <input type="checkbox" id="privateToggle" aria-label="Sala privada" />
+            <span class="toggle-track"></span>
+            <span class="toggle-text">Sala</span>
+            <span class="toggle-status" id="privacyStatus">Publica</span>
+          </label>
+
+          <label class="select-field">
+            <span>Jugadores</span>
+            <select id="playerCountSelect" aria-label="Jugadores">
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </label>
+
+          <label class="select-field">
+            <span>Objetivos</span>
+            <select id="goalSelect" aria-label="Objetivos">
+              <option value="10">10 Circulos</option>
+              <option value="20">20 Circulos</option>
+              <option value="50">50 Circulos</option>
+            </select>
+          </label>
+
+          <label class="select-field pass-field">
+            <span>Contrasena</span>
+            <input class="input" id="roomPassInput" type="password" placeholder="------" />
+          </label>
+        </div>
+      </div>
+
+      <div class="overlay-body">
+        <div class="slots" id="slotsGrid"></div>
+
+        <div class="overlay-footer">
+          <div class="hint" id="lobbyHint" aria-live="polite"></div>
+          <div class="overlay-actions">
+            <button class="btn-ghost" id="backLobbyBtn" type="button" aria-label="Volver al lobby">VOLVER AL LOBBY</button>
+            <button class="btn-primary" id="startBtn" type="button" aria-label="Iniciar partida" disabled>INICIAR PARTIDA</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay 3: Final / Restart (hidden) -->
+  <div class="overlay-wrap" id="overlayFinal" hidden>
+    <div class="overlay overlay-enter overlay-panel overlay-final" role="dialog" aria-modal="true" aria-labelledby="finalTitle" aria-describedby="finalSub">
+      <div class="overlay-top">
+        <div class="overlay-title-row">
+          <div class="overlay-title" id="finalTitle">Victoria!</div>
+          <div class="overlay-sub" id="finalSub">Ganaste llegando al corazon</div>
+        </div>
+      </div>
+
+      <div class="overlay-body">
+        <div class="slots" id="finalSlotsGrid"></div>
+        <div class="overlay-footer">
+          <div class="overlay-actions">
+            <button class="btn-ghost" id="finalLobbyBtn" type="button" aria-label="Volver al lobby">VOLVER AL LOBBY</button>
+            <button class="btn-primary" id="finalRestartBtn" type="button" aria-label="Volver a jugar">VOLVER A JUGAR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slot actions menu -->
+  <div class="slot-menu" id="slotMenu" hidden>
+    <div class="slot-menu-title" id="slotMenuTitle">Acciones</div>
+    <button class="slot-menu-btn" id="menuAddBotBtn" type="button">Agregar Bot</button>
+    <button class="slot-menu-btn" id="menuSpectatorBtn" type="button">Mandar a espectador</button>
+    <button class="slot-menu-btn" id="menuKickBtn" type="button">Expulsar</button>
+    <button class="slot-menu-btn" id="menuHostBtn" type="button">Dar mando</button>
+  </div>
+
+  <div class="dice-overlay" id="diceOverlay" hidden>
+    <div class="dice-panel">
+      <div class="dice-player" id="dicePlayer" hidden>
+        <div class="dice-avatar" id="diceAvatar">&#128100;</div>
+        <div class="dice-name" id="diceName">Jugador</div>
+      </div>
+      <img class="dice-image" id="diceImage" src="./multimedia/dado/face_1.png" alt="Dado" />
+      <div class="dice-result" id="diceResult">-</div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/three@0.159.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.159.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="./js/game-colorroll.js"></script>
+</body>
+</html>
+
+
+

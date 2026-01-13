@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HexaChange</title>
+
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+  <div class="bg">
+    <div class="hexfield"></div>
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
+    <div class="grain"></div>
+  </div>
+
+  <header class="top">
+    <div class="brand">
+      <img class="brand-logo" src="logo.png" alt="HexaChange Logo">
+      <div class="brand-copy">
+        <div class="brand-title">HexaChange</div>
+        <div class="brand-sub">Tablero + dado + color. Llega a la meta llenando casillas.</div>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <a class="chip" href="#modes" aria-label="Ir a modos">
+        <span class="chip-dot"></span>
+        <span>Elegir modo</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="badge">
+          <span class="spark"></span>
+          <span>WEB GAME • HTML/CSS/JS</span>
+        </div>
+
+        <h1 class="headline">
+          Tira el dado.<br>
+          <span class="accent">Pinta el camino.</span><br>
+          Gana por estrategia + suerte.
+        </h1>
+
+        <p class="lead">
+          Cada turno avanzas según el dado y conviertes casillas a tu color.
+          Controla el tablero y llega a la meta antes que los demás.
+        </p>
+
+        <!-- ✅ Solo Probalico deshabilitado -->
+        <div class="notice">
+          <div class="notice-dot"></div>
+          <div class="notice-text">
+            <b>Disponible:</b> <b>ColorRoll Lite</b>.
+            <span class="muted"><b>Probalico</b> estará <b>próximamente</b>.</span>
+          </div>
+        </div>
+
+        <div class="mini-stats">
+          <div class="stat">
+            <div class="stat-k">Dado</div>
+            <div class="stat-v">1–6</div>
+          </div>
+          <div class="stat">
+            <div class="stat-k">Objetivo</div>
+            <div class="stat-v">Pintar casillas</div>
+          </div>
+          <div class="stat">
+            <div class="stat-k">Victoria</div>
+            <div class="stat-v">Llegar a meta</div>
+          </div>
+        </div>
+
+        <div class="scroll-hint">
+          <span class="scroll-pill">⬇ baja para ver los modos</span>
+        </div>
+      </div>
+
+      <!-- ✅ Panel derecho: DADO / SKINS con 16 cuadros -->
+      <div class="hero-right">
+        <div class="device" aria-hidden="true">
+          <div class="device-top">
+            <span class="d-dot"></span><span class="d-dot"></span><span class="d-dot"></span>
+            <div class="device-title">DADO / SKINS</div>
+          </div>
+
+          <!-- 16 tiles: 1 dado + 15 ? -->
+          <div class="device-grid skins-grid" aria-label="Skins del dado (futuro)">
+            <div class="tile skin-tile skin-default" title="Dado (original)">
+              <div class="die mini">
+                <span class="pip p1"></span>
+                <span class="pip p2"></span>
+                <span class="pip p3"></span>
+                <span class="pip p4"></span>
+                <span class="pip p5"></span>
+              </div>
+            </div>
+
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+            <div class="tile skin-tile skin-q"><span class="q">?</span></div>
+          </div>
+
+          <div class="device-bottom">
+            <div class="progress">
+              <div class="bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODOS (más abajo y en vertical) -->
+    <section class="modes-wrap" id="modes">
+      <div class="modes-head">
+        <h2 class="modes-title">Modos</h2>
+        <p class="modes-sub">
+          El único modo jugable por ahora es <b>ColorRoll Lite</b>.
+          <b>Próximamente</b> se activaran los otros modos.
+        </p>
+      </div>
+
+      <div class="modes-vertical">
+        <!-- ✅ ColorRoll Lite DISPONIBLE -->
+        <a class="mode-row" href="./colorroll-lite.html">
+          <div class="mode-left">
+            <div class="mode-name">ColorRoll Lite</div>
+            <div class="mode-tag">Modo corto • Disponible</div>
+
+            <p class="mode-desc">
+              Partidas rápidas enfocadas en <b>suerte pura</b>. Avanzas con un dado normal <b>1–6</b>.
+              Tu objetivo es llegar al final mientras vas <b>pintando casillas</b> a tu color.
+              Ideal para partidas cortas y para entregar el proyecto funcionando.
+            </p>
+
+            <ul class="mode-bullets">
+              <li>Dado: <b>1–6</b> fijo</li>
+              <li>Duración: <b>rápida</b></li>
+              <li>Meta: llegar a ❤️ pintando el camino</li>
+              <li>Tamaños: 10 / 20 / 50 círculos</li>
+            </ul>
+          </div>
+
+          <div class="mode-right">
+            <div class="mode-status live">
+              <span class="status-dot"></span>
+              <span>Jugable</span>
+            </div>
+            <div class="mode-cta">Entrar ↗</div>
+          </div>
+        </a>
+
+        <!-- ❌ Probalico PRÓXIMAMENTE -->
+        <div class="mode-row disabled" aria-disabled="true">
+          <div class="mode-left">
+            <div class="mode-name">Probalico</div>
+            <div class="mode-tag alt">Modo medio • Próximamente</div>
+
+            <p class="mode-desc">
+              Modo con <b>probabilidades dinámicas</b>: el juego ajusta chances según cómo vaya la partida
+              y añade mecánicas como <b>“Regalar turno”</b>. Menos azar, más control.
+            </p>
+
+            <ul class="mode-bullets">
+              <li>Probabilidades: <b>dinámicas</b></li>
+              <li>Mecánica: “Regalar turno”</li>
+              <li>Duración: <b>media</b></li>
+              <li>Tamaños: 100 / 150 / 200 círculos</li>
+            </ul>
+          </div>
+
+          <div class="mode-right">
+            <div class="mode-status soon">
+              <span class="status-dot"></span>
+              <span>Próximamente</span>
+            </div>
+            <div class="mode-cta off">No disponible</div>
+          </div>
+        </div>
+
+        <!-- ❌ HexaChange completo (futuro) -->
+        <div class="mode-row disabled" aria-disabled="true">
+          <div class="mode-left">
+            <div class="mode-name">HexaChange</div>
+            <div class="mode-tag soon">Versión completa • Próximamente</div>
+
+            <p class="mode-desc">
+              La versión final: más reglas, variantes, progresión, eventos y a futuro multijugador.
+              Aquí entran también los <b>diseños del dado</b> y mejoras visuales.
+            </p>
+
+            <ul class="mode-bullets">
+              <li>Roadmap: skins del dado + mejoras</li>
+              <li>Más variantes y reglas</li>
+              <li>Futuro: ranking / eventos</li>
+              <li>Hasta 10 jugadores (a futuro)</li>
+            </ul>
+          </div>
+
+          <div class="mode-right">
+            <div class="mode-status soon">
+              <span class="status-dot"></span>
+              <span>Próximamente</span>
+            </div>
+            <div class="mode-cta off">No disponible</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>Sin frameworks • HTML/CSS/JS</span>
+      <span class="dot">•</span>
+      <span>Diseño Hex Neon • Glow • Animaciones</span>
+    </footer>
+  </main>
+
+  <script src="js/index.js"></script>
+</body>
+</html>
